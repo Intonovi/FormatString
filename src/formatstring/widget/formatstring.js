@@ -140,17 +140,17 @@ define([
              * new Mendix 8
              * 
              */
-            // if (obj.isNumeric(attr) || (obj.isCurrency && obj.isCurrency(attr)) || obj.getAttributeType(attr) === "AutoNumber") {
-            //     var numberOptions = {};
-            //     numberOptions.places = attrObj.decimalPrecision;
-            //     if (attrObj.groupDigits) {
-            //         numberOptions.locale = this._getLocale();
-            //         numberOptions.groups = true;
-            //     }
+            if (obj.isNumeric(attr) || obj.getAttributeType(attr) === "AutoNumber") {
+                var numberOptions = {};
+                numberOptions.places = attrObj.decimalPrecision;
+                if (attrObj.groupDigits) {
+                    numberOptions.locale = this._getLocale();
+                    numberOptions.groups = true;
+                }
 
-            //     var returnNumber = mx.parser.formatValue(obj.get(attr), obj.getAttributeType(attr), numberOptions);
-            //     return returnNumber === "" ? attrObj.emptyReplacement : returnNumber;
-            // }
+                var returnNumber = mx.parser.formatValue(obj.get(attr), obj.getAttributeType(attr), numberOptions);
+                return returnNumber === "" ? attrObj.emptyReplacement : returnNumber;
+            }
 
             var returnValue = "";
             if (obj.getAttributeType(attr) === "String") {
